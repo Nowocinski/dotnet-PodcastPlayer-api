@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastPlayer-API", "PodcastPlayer-API\PodcastPlayer-API.csproj", "{21B52E80-BF5C-43E3-9118-3688356A4FA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Core", "WebApplication.Core\WebApplication.Core.csproj", "{23E638D8-391B-4E69-BC99-E77239DAB6E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Infrastructure", "WebApplication.Infrastructure\WebApplication.Infrastructure.csproj", "{E142E5EE-9B85-4578-9F80-C99C6BE001CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{21B52E80-BF5C-43E3-9118-3688356A4FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21B52E80-BF5C-43E3-9118-3688356A4FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21B52E80-BF5C-43E3-9118-3688356A4FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E638D8-391B-4E69-BC99-E77239DAB6E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E638D8-391B-4E69-BC99-E77239DAB6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E638D8-391B-4E69-BC99-E77239DAB6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E638D8-391B-4E69-BC99-E77239DAB6E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E142E5EE-9B85-4578-9F80-C99C6BE001CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E142E5EE-9B85-4578-9F80-C99C6BE001CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E142E5EE-9B85-4578-9F80-C99C6BE001CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E142E5EE-9B85-4578-9F80-C99C6BE001CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

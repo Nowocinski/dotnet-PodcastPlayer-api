@@ -2,19 +2,39 @@
 using WebApplication.Infrastructure.Commands;
 using WebApplication.Infrastructure.DTOs;
 using WebApplication.Infrastructure.Extensions;
+using WebApplication.Infrastructure.Services.User.JwtToken;
 
 namespace WebApplication.Infrastructure.Services.User
 {
     public class UserService : IUserService
     {
         private readonly IGenericRepository<Core.Models.User> _genericRepository;
-        public UserService(IGenericRepository<Core.Models.User> genericRepository)
+        private readonly IJwtHandler _jwtHandler;
+        public UserService(IGenericRepository<Core.Models.User> genericRepository, IJwtHandler jwtHandler)
         {
             this._genericRepository = genericRepository;
+            this._jwtHandler = jwtHandler;
         }
         public async Task<LoginDTO> LoginAsync(string Email, string Password)
         {
-            throw new NotImplementedException();
+            var users = await _genericRepository.GetAll();
+            Core.Models.User user = users.FirstOrDefault(u => u.Email == Email);
+            if (user == null)
+                throw new Exception("Invalid credentials.");
+            if (user.Password != Password.Hash())
+                throw new Exception("Invalid credentials.");
+
+            // TODO: User does not have any roles
+            string token = _jwtHandler.CreateToken(user.Id, String.Empty);
+
+            return new LoginDTO
+            {
+                Token = token,
+                Id = Guid.NewGuid(),
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
         }
 
         public async Task RegisterAsync(RegisterCommand data)
@@ -35,7 +55,8 @@ namespace WebApplication.Infrastructure.Services.User
                 Email = data.Email,
                 Password = data.Password.Hash(),
                 FirstName = data.FirstName,
-                LastName = data.LastName
+                LastName = data.LastName,
+                Username = data.Username
             };
             await this._genericRepository.Insert(user);
             await this._genericRepository.Save();

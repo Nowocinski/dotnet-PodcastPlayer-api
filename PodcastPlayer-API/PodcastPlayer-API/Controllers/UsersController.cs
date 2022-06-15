@@ -27,5 +27,11 @@ namespace PodcastPlayer_API.Controllers
             await _userService.RegisterAsync(data);
             return Created("/users", null);
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<LoginDTO>> Login([FromBody] LoginCommand command)
+        {
+            return await _userService.LoginAsync(command.Email, command.Password);
+        }
     }
 }

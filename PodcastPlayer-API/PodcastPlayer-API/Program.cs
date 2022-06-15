@@ -3,6 +3,8 @@ using WebApplication.Core.Context;
 using WebApplication.Core.Repositories;
 using WebApplication.Infrastructure.Repositories;
 using WebApplication.Infrastructure.Services.User;
+using WebApplication.Infrastructure.Services.User.JwtToken;
+using WebApplication.Infrastructure.Settings;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -16,11 +18,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IJwtHandler, JwtHandler>();
 builder.Services.AddDbContext<DataBaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"), b => b.MigrationsAssembly("PodcastPlayer-API"));
 });
-
+//var aaa = builder.Configuration.GetRequiredSection("Jwt").Get<JwtSettings>();
 
 var app = builder.Build();
 

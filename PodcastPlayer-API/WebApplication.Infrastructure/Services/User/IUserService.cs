@@ -5,7 +5,7 @@ namespace WebApplication.Infrastructure.Services.User
 {
     public interface IUserService
     {
-        Task RegisterAsync(Register Data);
+        Task RegisterAsync(RegisterCommand Data);
         Task<LoginDTO> LoginAsync(string Email, string Password);
         Task<IEnumerable<AccountDTO>> GetAll();
     }

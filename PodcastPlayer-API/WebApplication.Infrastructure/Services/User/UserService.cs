@@ -1,6 +1,7 @@
 ﻿using WebApplication.Core.Repositories;
 using WebApplication.Infrastructure.Commands;
 using WebApplication.Infrastructure.DTOs;
+using WebApplication.Infrastructure.Extensions;
 
 namespace WebApplication.Infrastructure.Services.User
 {
@@ -16,7 +17,7 @@ namespace WebApplication.Infrastructure.Services.User
             throw new NotImplementedException();
         }
 
-        public async Task RegisterAsync(Register data)
+        public async Task RegisterAsync(RegisterCommand data)
         {
             var users = await this._genericRepository.GetAll();
             if(users.FirstOrDefault(u => u.Email == data.Email) != null)
@@ -32,7 +33,7 @@ namespace WebApplication.Infrastructure.Services.User
             {
                 Id = Guid.NewGuid(),
                 Email = data.Email,
-                Password = data.Password,
+                Password = data.Password.Hash(),
                 FirstName = data.FirstName,
                 LastName = data.LastName
             };

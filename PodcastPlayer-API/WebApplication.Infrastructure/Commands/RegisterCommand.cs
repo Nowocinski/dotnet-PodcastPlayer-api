@@ -1,6 +1,6 @@
 ﻿namespace WebApplication.Infrastructure.Commands
 {
-    public class Register
+    public class RegisterCommand
     {
         public string Username { get; set; }
         public string Email { get; set; }

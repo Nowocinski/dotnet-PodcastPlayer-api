@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication.Infrastructure.Commands;
 using WebApplication.Infrastructure.DTOs;
 using WebApplication.Infrastructure.Services.User;
 
@@ -18,6 +19,13 @@ namespace PodcastPlayer_API.Controllers
         public async Task<IEnumerable<AccountDTO>> Get()
         {
             return await this._userService.GetAll();
+        }
+
+        [HttpPost("registration")]
+        public async Task<ActionResult> Register([FromBody] RegisterCommand data)
+        {
+            await _userService.RegisterAsync(data);
+            return Created("/users", null);
         }
     }
 }
